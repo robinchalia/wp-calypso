@@ -44,6 +44,7 @@
 		"comments/management/all-list": false,
 		"community-translator": true,
 		"css-hot-reload": true,
+		"custom-scrollbars": true,
 		"desktop-promo": true,
 		"devdocs": true,
 		"devdocs/redirect-loggedout-homepage": true,
