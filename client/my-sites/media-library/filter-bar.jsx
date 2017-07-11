@@ -151,7 +151,11 @@ export class MediaLibraryFilterBar extends Component {
 	render() {
 		return (
 			<div className="media-library__filter-bar">
-				<SectionNav selectedText={ this.getFilterLabel( this.props.filter ) } hasSearch={ true }>
+				<SectionNav
+					selectedText={ this.getFilterLabel( this.props.filter ) }
+					hasSearch={ true }
+					allowDropdown={ ! this.props.source }
+				>
 					{ this.renderSectionTitle() }
 					{ this.renderTabItems() }
 					{ this.renderSearchSection() }
