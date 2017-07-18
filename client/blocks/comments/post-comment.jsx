@@ -178,6 +178,7 @@ class PostComment extends Component {
 							</a>
 						: <strong
 							className="comments__comment-username"
+							name={ `comment-${ this.props.commentId }` }
 							>
 								{ comment.author.name }
 							</strong> }
