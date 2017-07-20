@@ -30,10 +30,28 @@ class PreviewMain extends React.Component {
 
 	state = {
 		previewUrl: null,
+		showingClose: false,
 	};
 
 	componentWillMount() {
 		this.updateUrl();
+		this.updateLayout();
+	}
+
+	updateLayout = () => {
+		this.setState( {
+			showingClose: isWithinBreakpoint( '<660px' ),
+		} );
+	}
+
+	throttledUpdateLayout = throttle( this.updateLayout, 100 );
+
+	componentDidMount() {
+		global.window && global.window.addEventListener( 'resize', this.throttledUpdateLayout );
+	}
+
+	componentWillUnmount() {
+		global.window && global.window.removeEventListener( 'resize', this.throttledUpdateLayout );
 	}
 
 	updateUrl() {
@@ -79,7 +97,7 @@ class PreviewMain extends React.Component {
 			<Main className="preview">
 				<DocumentHead title={ translate( 'Site Preview' ) } />
 				<WebPreviewContent
-					showClose={ isWithinBreakpoint( '<660px' ) }
+					showClose={ this.state.showingClose }
 					onClose={ this.focusSidebar }
 					previewUrl={ this.state.previewUrl }
 				/>
