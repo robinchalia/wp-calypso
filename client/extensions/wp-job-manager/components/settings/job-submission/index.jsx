@@ -36,6 +36,7 @@ class JobSubmission extends Component {
 	render() {
 		const {
 			enableRegistration,
+			generateUsername,
 			handleSubmit,
 			isDisabled,
 			isSaving,
@@ -84,7 +85,7 @@ class JobSubmission extends Component {
 										</FormSettingExplanation>
 
 										<ReduxFormToggle
-											disabled={ isDisabled }
+											disabled={ isDisabled || generateUsername }
 											name="emailPassword"
 											text="Email new users a link to set a password" />
 										<FormSettingExplanation isIndented>
@@ -248,6 +249,7 @@ const connectComponent = connect(
 
 		return {
 			enableRegistration: selector( state, 'account.enableRegistration' ),
+			generateUsername: selector( state, 'account.generateUsername' ),
 			submissionDuration: selector( state, 'duration.submissionDuration' ),
 		};
 	}
